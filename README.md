@@ -1,13 +1,43 @@
-# React + Vite
+InternshipHub: AI-Powered Internship Recommender (Client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the client-side repository for InternshipHub. You can find the server-side code here: [InternshipHub Server](https://github.com/Pritam7Chakraborty/internship-recommendation-Server).
 
-Currently, two official plugins are available:
+This is the frontend repository for InternshipHub, a MERN stack application that uses the Google Gemini API to provide personalized internship recommendations. The client is a modern, responsive single-page application built with React and styled with Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌟 Features
+Polished UI: A professional and responsive user interface with a seamless light/dark mode.
 
-## Expanding the ESLint configuration
+Multi-Step Authentication: A sleek multi-step registration form to capture rich user profile data.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# internship-recommendation-Client
+AI-Powered Dashboard: Displays personalized internship recommendations powered by the Gemini AI.
+
+Profile Management: Users can view and update their saved profile information.
+
+View All Internships: A dedicated section to browse all available internships.
+
+🚀 Getting Started
+Prerequisites
+Node.js (v18 or higher)
+
+npm or yarn
+
+The backend server must be running.
+
+Installation
+Clone this repository to your local machine.
+
+Bash
+
+git clone https://github.com/Pritam7Chakraborty/internship-recommendation-Client.git
+cd internship-recommendation-Client
+Install the required dependencies.
+
+Bash
+
+npm install
+Start the development server.
+
+Bash
+
+npm run dev
+Open your browser and navigate to the URL provided by Vite (e.g., http://localhost:5173).
