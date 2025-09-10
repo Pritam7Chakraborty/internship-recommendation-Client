@@ -1,95 +1,83 @@
-import React, { useState, useEffect } from "react";
-import {
-  Sun,
-  Moon,
-  LogOut,
-  Building2,
-  Sparkles,
-  User,
-  Shield,
-} from "lucide-react";
-import AuthForm from "./components/AuthForm";
-import Dashboard from "./components/Dashboard";
-import Profile from "./components/Profile";
-import AdminPanel from "./components/AdminPanel";
+import React, { useState, useEffect } from 'react';
+import { Sun, Moon, LogOut, Building2, Sparkles, User, Shield } from 'lucide-react';
+import AuthForm from './components/AuthForm';
+import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
+import AdminPanel from './components/AdminPanel';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState("");
-  const [username, setUsername] = useState("");
-  const [message, setMessage] = useState("");
+  const [token, setToken] = useState('');
+  const [username, setUsername] = useState('');
+  const [message, setMessage] = useState('');
   const [isDark, setIsDark] = useState(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) return storedTheme === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) return storedTheme === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
-  const [currentPage, setCurrentPage] = useState("dashboard");
+  const [currentPage, setCurrentPage] = useState('dashboard');
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
     if (isDark) {
-      root.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      root.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [isDark]);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("internship_token");
-    const storedUsername = localStorage.getItem("internship_username");
-    const storedIsAdmin = localStorage.getItem("is_admin") === "true";
+    const storedToken = localStorage.getItem('internship_token');
+    const storedUsername = localStorage.getItem('internship_username');
+    const storedIsAdmin = localStorage.getItem('is_admin') === 'true';
     if (storedToken && storedUsername) {
       setIsLoggedIn(true);
       setToken(storedToken);
       setUsername(storedUsername);
       setIsAdmin(storedIsAdmin);
-      setCurrentPage("dashboard");
+      setCurrentPage('dashboard');
     }
   }, []);
 
   const handleLogin = (authToken, userUsername, userIsAdmin) => {
-    localStorage.setItem("internship_token", authToken);
-    localStorage.setItem("internship_username", userUsername);
-    localStorage.setItem("is_admin", userIsAdmin);
+    localStorage.setItem('internship_token', authToken);
+    localStorage.setItem('internship_username', userUsername);
+    localStorage.setItem('is_admin', userIsAdmin);
     setToken(authToken);
     setUsername(userUsername);
     setIsAdmin(userIsAdmin);
     setIsLoggedIn(true);
     setMessage(`Welcome back, ${userUsername}! 🎉`);
-    setTimeout(() => setMessage(""), 3000);
+    setTimeout(() => setMessage(''), 3000);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("internship_token");
-    localStorage.removeItem("internship_username");
-    localStorage.removeItem("is_admin");
-    setToken("");
-    setUsername("");
+    localStorage.removeItem('internship_token');
+    localStorage.removeItem('internship_username');
+    localStorage.removeItem('is_admin');
+    setToken('');
+    setUsername('');
     setIsLoggedIn(false);
     setIsAdmin(false);
-    setCurrentPage("dashboard");
-    setMessage("Successfully logged out. See you soon! 👋");
-    setTimeout(() => setMessage(""), 3000);
+    setCurrentPage('dashboard');
+    setMessage('Successfully logged out. See you soon! 👋');
+    setTimeout(() => setMessage(''), 3000);
   };
 
   const toggleTheme = () => {
-    setIsDark((prevTheme) => !prevTheme);
+    setIsDark(prevTheme => !prevTheme);
   };
 
   const renderPage = () => {
-    switch (currentPage) {
-      case "dashboard":
-        return (
-          <Dashboard token={token} username={username} onMessage={setMessage} />
-        );
-      case "profile":
-        return (
-          <Profile token={token} username={username} onMessage={setMessage} />
-        );
-      case "admin":
+    switch(currentPage) {
+      case 'dashboard':
+        return <Dashboard token={token} username={username} onMessage={setMessage} />;
+      case 'profile':
+        return <Profile token={token} username={username} onMessage={setMessage} />;
+      case 'admin':
         return <AdminPanel token={token} onMessage={setMessage} />;
       default:
         return null;
@@ -109,10 +97,7 @@ const App = () => {
                 <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-yellow-400 animate-pulse" />
               </div>
               <div>
-                <h1
-                  className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent cursor-pointer"
-                  onClick={() => setCurrentPage("dashboard")}
-                >
+                <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent cursor-pointer" onClick={() => setCurrentPage('dashboard')}>
                   InternshipHub
                 </h1>
                 <p className="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">
@@ -127,20 +112,8 @@ const App = () => {
                 aria-label="Toggle theme"
               >
                 <div className="relative w-5 h-5">
-                  <Sun
-                    className={`absolute inset-0 transition-all duration-300 ${
-                      isDark
-                        ? "opacity-0 rotate-180 scale-50"
-                        : "opacity-100 rotate-0 scale-100"
-                    }`}
-                  />
-                  <Moon
-                    className={`absolute inset-0 transition-all duration-300 ${
-                      isDark
-                        ? "opacity-100 rotate-0 scale-100"
-                        : "opacity-0 rotate-180 scale-50"
-                    }`}
-                  />
+                  <Sun className={`absolute inset-0 transition-all duration-300 ${isDark ? 'opacity-0 rotate-180 scale-50' : 'opacity-100 rotate-0 scale-100'}`} />
+                  <Moon className={`absolute inset-0 transition-all duration-300 ${isDark ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-50'}`} />
                 </div>
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </button>
@@ -148,7 +121,7 @@ const App = () => {
                 <div className="flex items-center space-x-3">
                   <div className="hidden sm:flex items-center space-x-2">
                     <button
-                      onClick={() => setCurrentPage("profile")}
+                      onClick={() => setCurrentPage('profile')}
                       className="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
                     >
                       <User className="w-4 h-4" />
@@ -156,7 +129,7 @@ const App = () => {
                     </button>
                     {isAdmin && (
                       <button
-                        onClick={() => setCurrentPage("admin")}
+                        onClick={() => setCurrentPage('admin')}
                         className="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
                       >
                         <Shield className="w-4 h-4" />
@@ -183,9 +156,7 @@ const App = () => {
             <div className="max-w-2xl mx-auto p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-700/50 rounded-xl shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <p className="text-blue-700 dark:text-blue-300 font-medium">
-                  {message}
-                </p>
+                <p className="text-blue-700 dark:text-blue-300 font-medium">{message}</p>
               </div>
             </div>
           </div>
